@@ -7,14 +7,9 @@ try:
     from courses.models import Category, Course  # noqa:F401
     from lessons.models import Lesson  # noqa:F401
 except ImportError as e:
-    models = {
-        'courses': ['Category', 'Course'],
-        'lessons': ['Lesson']
-    }
     raise AssertionError(
-        f'В приложении `{e.name}` опишите '
-        f'модели `{", ".join(models[e.name])}`'
-    )
+        f'При импорте моделей из файла `{e.name.replace(".", "/")}.py` '
+        f'произошла ошибка: {e}') from e
 except RuntimeError:
     registered_apps = set(app.name for app in apps.get_app_configs())
     need_apps = {'courses': 'courses', 'lessons': 'lessons'}
