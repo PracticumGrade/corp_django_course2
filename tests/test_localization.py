@@ -99,6 +99,12 @@ def test_models_params_translate(n_app, n_model, param, n_verbose):
         'Идентификатор страницы для URL; '
         'разрешены символы латиницы, цифры, дефис и подчёркивание.'
     ),
+    (
+        'lessons',
+        'Lesson',
+        'duration',
+        'Укажите продолжительность курса в минутах'
+    )
 ])
 def test_help_text_translate(n_app, n_model, param, text):
     module = importlib.import_module(f'{n_app}.models')
