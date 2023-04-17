@@ -22,9 +22,9 @@ from lessons.models import Lesson
             'courses',
             'Course',
             {
-                'list_display': ('title', 'author', 'category', 'is_published',),
-                'list_filter': ('category', 'is_published',),
-                'list_editable': ('is_published',),
+                'list_display': ('title', 'author', 'category', 'is_public',),
+                'list_filter': ('category', 'is_public',),
+                'list_editable': ('is_public',),
                 'list_display_links': ('title',),
                 'readonly_fields': ('created_at', 'updated_at',),
             }

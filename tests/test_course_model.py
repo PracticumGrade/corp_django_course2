@@ -16,7 +16,7 @@ pytestmark = [
     ('description', TextField, {}),
     ('author', ForeignKey, {'null': False}),
     ('category', ForeignKey, {'null': False}),
-    ('is_published', BooleanField, {'default': False}),
+    ('is_public', BooleanField, {'default': False}),
     ('created_at', DateTimeField, {'auto_now_add': True}),
     ('updated_at', DateTimeField, {'auto_now': True}),
 ])

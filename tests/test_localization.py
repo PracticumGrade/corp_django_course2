@@ -63,7 +63,7 @@ def test_models_translated(n_app, n_model, n_verbose, n_verbose_plural):
     ('courses', 'Course', 'description', 'Описание'),
     ('courses', 'Course', 'author', 'Автор курса'),
     ('courses', 'Course', 'category', 'Категория'),
-    ('courses', 'Course', 'is_published', 'Опубликовано'),
+    ('courses', 'Course', 'is_public', 'Публичный'),
     ('courses', 'Course', 'created_at', 'Добавлено'),
     ('courses', 'Course', 'updated_at', 'Отредактировано'),
     ('lessons', 'Lesson', 'title', 'Заголовок'),
@@ -89,8 +89,8 @@ def test_models_params_translate(n_app, n_model, param, n_verbose):
     (
         'courses',
         'Course',
-        'is_published',
-        'Снимите галочку, чтобы сделать курс приватным.'
+        'is_public',
+        'Установите галочку, чтобы сделать курс публичным.'
     ),
     (
         'courses',
