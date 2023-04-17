@@ -11,7 +11,7 @@ def courses(mixer):
 
 
 @pytest.fixture
-def author_courses(mixer, author):
+def courses_with_author(mixer, author):
     return mixer.cycle(N_COURSES).blend('courses.Course', author=author)
 
 
