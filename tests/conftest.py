@@ -1,6 +1,7 @@
 import pytest
 from django.apps import apps
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Permission, ContentType
 from mixer.backend.django import mixer as _mixer
 
 try:
@@ -34,14 +35,25 @@ def mixer():
 
 
 @pytest.fixture
-def user(mixer):
-    User = get_user_model()
-    return mixer.blend(User)
+def course_permissions():
+    content_type = ContentType.objects.get_for_model(Course)
+    return Permission.objects.filter(content_type=content_type)
 
 
 @pytest.fixture
-def user_client(user, client):
-    client.force_login(user)
+def author(mixer, course_permissions):
+    User = get_user_model()
+    user = mixer.blend(User, is_staff=True)
+
+    for permission in course_permissions:
+        user.user_permissions.add(permission)
+
+    return user
+
+
+@pytest.fixture
+def author_client(author, client):
+    client.force_login(author)
     return client
 
 
