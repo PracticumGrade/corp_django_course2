@@ -49,17 +49,16 @@ class TestCategoryModelAttrs(_TestModelAttrs):
         return Lesson
 
 
-@pytest.mark.skip(reason='Пока не реализовано')  # FIXME адаптировать под Course
-def test_author_on_delete(posts_with_author):
-    author = posts_with_author[0].author
+def test_author_on_delete(lessons_with_course):
+    course = lessons_with_course[0].course
     try:
-        author.delete()
+        course.delete()
     except IntegrityError:
         raise AssertionError(
             'Проверьте, что значение атрибута `on_delete` '
-            'поля `author` в модели `Post` соответствует заданию.'
+            'поля `course` в модели `Lesson` соответствует заданию.'
         )
-    assert not Lesson.objects.filter(author=author).exists(),  (
+    assert not Lesson.objects.filter(course=course).exists(),  (
         'Проверьте, что значение атрибута `on_delete` '
-        'поля `author` в модели `Post` соответствует заданию.'
+        'поля `course` в модели `Lesson` соответствует заданию.'
     )

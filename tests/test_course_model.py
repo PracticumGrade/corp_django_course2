@@ -27,33 +27,31 @@ class TestCategoryModelAttrs(_TestModelAttrs):
         return Course
 
 
-@pytest.mark.skip(reason='Пока не реализовано')  # FIXME адаптировать под Course
-def test_author_on_delete(posts_with_author):
-    author = posts_with_author[0].author
+def test_author_on_delete(courses_with_author):
+    author = courses_with_author[0].author
     try:
         author.delete()
     except IntegrityError:
         raise AssertionError(
             'Проверьте, что значение атрибута `on_delete` '
-            'поля `author` в модели `Post` соответствует заданию.'
+            'поля `author` в модели `Course` соответствует заданию.'
         )
     assert not Course.objects.filter(author=author).exists(),  (
         'Проверьте, что значение атрибута `on_delete` '
-        'поля `author` в модели `Post` соответствует заданию.'
+        'поля `author` в модели `Course` соответствует заданию.'
     )
 
 
-@pytest.mark.skip(reason='Пока не реализовано')  # FIXME адаптировать под Course
-def test_location_on_delete(posts_with_published_locations):
-    location = posts_with_published_locations[0].location
+def test_category_on_delete(courses_with_category):
+    category = courses_with_category[0].category
     try:
-        location.delete()
+        category.delete()
     except IntegrityError:
         raise AssertionError(
             'Проверьте, что значение атрибута `on_delete` '
-            'поля `location` в модели `Post` соответствует заданию.'
+            'поля `category` в модели `Course` соответствует заданию.'
         )
-    assert Course.objects.filter(location=location).exists(), (
+    assert not Course.objects.filter(category=category).exists(), (
         'Проверьте, что значение атрибута `on_delete` '
-        'поля `location` в модели `Post` соответствует заданию.'
+        'поля `category` в модели `Course` соответствует заданию.'
     )
