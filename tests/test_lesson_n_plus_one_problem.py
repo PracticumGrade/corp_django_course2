@@ -38,7 +38,7 @@ def test_lesson_name(admin_client, lessons):
     url = reverse('admin:lessons_lesson_changelist')
     response = admin_client.get(url)
     list_lesson_names = [
-        f'{lesson.course}:{lesson}' for lesson in lessons
+        f'{lesson.course}: {lesson}' for lesson in lessons
     ]
     content = response.content.decode('utf-8')
     for lesson_name in list_lesson_names:
