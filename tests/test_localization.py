@@ -103,7 +103,7 @@ def test_models_params_translate(n_app, n_model, param, n_verbose):
         'lessons',
         'Lesson',
         'duration',
-        'Укажите продолжительность курса в минутах'
+        'Укажите продолжительность курса в минутах.'
     )
 ])
 def test_help_text_translate(n_app, n_model, param, text):
