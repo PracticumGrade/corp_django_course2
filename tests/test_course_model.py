@@ -27,6 +27,18 @@ class TestCategoryModelAttrs(_TestModelAttrs):
         return Course
 
 
+def test__str__(mixer):
+    app_label = 'courses'
+    model_name = 'Course'
+    title = 'Тестовое название курса'
+
+    obj = mixer.blend(f'{app_label}.{model_name}', title=title)
+    assert str(obj) == title, (
+        f'Убедитесь, что в модели `{model_name}` '
+        'настроено читаемое название объектов согласно заданию.'
+    )
+
+
 def test_author_on_delete(courses_with_author):
     author = courses_with_author[0].author
     try:
